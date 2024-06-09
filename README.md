@@ -10,6 +10,7 @@ SupplierMax Frontend is a responsive and dynamic interface designed to interact 
 - [Architecture](#architecture)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Related Project](#related-project)
 
 ## Features
 
@@ -54,10 +55,11 @@ SupplierMax Frontend is a responsive and dynamic interface designed to interact 
 
 ### Requeriments:
 - Google Maps API, see the documentation: https://developers.google.com/maps/documentation/embed/get-started
+- SupplierMax Backend, see [Related Project](#related-project)
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/SupplierMax.git
+   git clone https://github.com/Cleiton366/suppliermax-frontend.git
    cd SupplierMax
     ```
 2. Install dependencies:
@@ -78,3 +80,7 @@ NEXT_PUBLIC_API_URL='http://localhost:4000'
 ```bash
 npm run dev
 ```
+
+## Related Project
+
+To run this project you will need to run the backend as well, see: https://github.com/Cleiton366/suppliermax-api
