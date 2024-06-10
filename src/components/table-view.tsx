@@ -386,7 +386,7 @@ export function TableView() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Loading data from the server, please wait.
                 </TableCell>
               </TableRow>
             )}
