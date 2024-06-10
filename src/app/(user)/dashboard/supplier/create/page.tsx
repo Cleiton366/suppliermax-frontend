@@ -2,10 +2,6 @@
 import BackButton from "@/components/back-button";
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb";
 import { InputForm } from "@/components/form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useEffect, useState } from "react";
 import * as React from "react";
 
 export default function Supplier() {

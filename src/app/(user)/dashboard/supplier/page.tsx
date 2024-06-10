@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
-import { IoArrowBackOutline } from "react-icons/io5";
 import BackButton from "@/components/back-button";
 
 export default function Supplier() {
