@@ -116,6 +116,7 @@ export default function Supplier() {
       </div>
     ) : (
       <div className="flex flex-col">
+        <BreadcrumbWithCustomSeparator items={breadcrumbItems} />
         <div className="px-20 p-5 rounded-md">
           <BackButton />
           <h1 className="mb-5 font-bold text-center mr-10 text-[16pt] md:text-[25pt]">{data.name}</h1>
