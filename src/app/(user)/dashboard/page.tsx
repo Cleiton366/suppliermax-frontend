@@ -16,8 +16,8 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col">
       <BreadcrumbWithCustomSeparator items={breadcrumbItems} />
-      <div className="ml-20 mr-20 mt-10 mb-20 bg-white p-5 rounded-md">
-        <h1 className="mt-5 mb-5 font-bold text-[15pt]">Suppliers Managment</h1>
+      <div className="p-5 md:p-20 bg-white rounded-md">
+        <h1 className="my-5 font-bold text-[15pt]">Suppliers Managment</h1>
         <TableView />
       </div>
     </div>

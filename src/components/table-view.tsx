@@ -38,7 +38,6 @@ import {
 } from "@/components/ui/table"
 import { useRouter } from "next/navigation";
 import { Supplier } from "@/interfaces/supplier"
-import TableViewProps from "@/interfaces/table-view-props"
 import SupplierMaxService from "@/services/supplier-max-services";
 import { toast } from "./ui/use-toast"
 
@@ -162,9 +161,11 @@ export function TableView() {
     []
   )
   const [columnVisibility, setColumnVisibility] =
-  React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
-  
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
+  const isWindowClient = typeof window === "object";
+  const [screenWidth, setScreenWidth] = useState(isWindowClient ? window.innerWidth : undefined);
+
   useEffect(() => {
     async function fetchData() {
       const suppliers = await SupplierMaxService.getSuppliers();
@@ -192,6 +193,33 @@ export function TableView() {
     },
   });
 
+  useEffect(() => {
+    console.log("screenWidth", screenWidth);
+    function setSize() {
+      setScreenWidth(window.innerWidth);
+    }
+
+    if (isWindowClient) {
+      window.addEventListener("resize", setSize);
+      if (screenWidth && screenWidth < 768) {
+        table
+          .getAllColumns()
+          .filter((column) => column.getCanHide())
+          .map((column) => {
+            if (column.id != ('name' || 'actions')) column.toggleVisibility(false);
+          });
+      } else {
+        table
+          .getAllColumns()
+          .filter((column) => column.getCanHide())
+          .map((column) => {
+            column.toggleVisibility(true);
+          });
+      }
+      return () => window.removeEventListener("resize", setSize);
+    }
+  }, [screenWidth, isWindowClient]);
+
   const showDeleteButton = table.getFilteredSelectedRowModel().rows.length > 0;
 
   async function handleDelete() {
@@ -205,7 +233,6 @@ export function TableView() {
       });
       var newTable = data.filter((supplier) => !selectedIds.includes(supplier.id));
       setData(newTable);
-      
       const rows = table.getRowModel().rows;
       rows.map((row) => {
         row.toggleSelected(false);
@@ -238,7 +265,7 @@ export function TableView() {
   }
 
   return (
-    <div className="w-full border p-5 shadow-md bg-[#fafefd]">
+    <div className="w-full border p-1 md:p-5 shadow-md bg-[#fafefd]">
       <div className="flex flex-col items-center justify-between py-4 md:flex-row">
         <Input
           placeholder="Filter emails..."
@@ -249,7 +276,7 @@ export function TableView() {
           className="max-w-sm"
         />
         <div className="flex flex-col py-4 md:flex-row">
-          <div className="flex mb-5 md:mb-0">
+          <div className="flex mb-5 justify-between md:mb-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="ml-auto">
@@ -322,11 +349,10 @@ export function TableView() {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <div className="flex">
+          <div className="flex justify-between">
             <Button
               variant="outline"
               size="sm"
-              className="ml-5"
               onClick={() => handleNewSupplier()}
             >
               New Supplier
@@ -334,7 +360,6 @@ export function TableView() {
             <Button
               variant="outline"
               size="sm"
-              className="ml-5"
               disabled={!showDeleteButton}
               onClick={handleDelete}
             >
