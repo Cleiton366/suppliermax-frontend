@@ -194,7 +194,6 @@ export function TableView() {
   });
 
   useEffect(() => {
-    console.log("screenWidth", screenWidth);
     function setSize() {
       setScreenWidth(window.innerWidth);
     }
