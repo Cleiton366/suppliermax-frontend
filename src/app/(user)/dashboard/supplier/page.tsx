@@ -117,14 +117,14 @@ export default function Supplier() {
     ) : (
       <div className="flex flex-col">
         <BreadcrumbWithCustomSeparator items={breadcrumbItems} />
-        <div className="px-20 p-5 rounded-md">
+        <div className="px-5 md:px-20 p-5 rounded-md">
           <BackButton />
           <h1 className="mb-5 font-bold text-center mr-10 text-[16pt] md:text-[25pt]">{data.name}</h1>
-          <div className="flex flex-col md:flex-row align-middle justify-center border p-3 shadow-md min-h-[46rem] container">
-            <div className="flex flex-col align-middle justify-center mr-24">
-              <div className="flex self-center justify-center ml-10">
+          <div className="flex flex-col md:flex-row justify-center border md:space-x-20 p-3 shadow-md min-h-[46rem] container">
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center justify-center ml-10">
                 <img
-                  className="rounded-full w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48"
+                  className="rounded-full w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48"
                   src={image || "/default-picture.png"}
                   alt={data.name}
                 />
